@@ -1,7 +1,7 @@
 let expect = require("chai").expect;
 let fs     = require("fs");
 
-let PDFImage = require("../").PDFImage;
+let PDFImage = require("../dist/index").PDFImage;
 
 describe("PDFImage", function () {
   let pdfPath = "/tmp/test.pdf";
@@ -27,7 +27,7 @@ describe("PDFImage", function () {
   it("should have correct basename", function () {
     expect(pdfImage.pdfFileBaseName).equal("test");
   });
-  
+
   it("should set custom basename", function() {
     pdfImage.setPdfFileBaseName('custom-basename');
     expect(pdfImage.pdfFileBaseName).equal("custom-basename");

@@ -53,6 +53,30 @@ pdfImage.convertFile().then(function (imagePaths) {
 });
 ```
 
+
+
+#### Convert full file (TypeScript)
+```typescript
+import {PDFImage, PDFImageOptions} from 'pdf-image';
+
+const pdfImageOptions: PDFImageOptions = {
+        convertExtension: 'png',
+        convertOptions: {
+            "-resize": '1240x1754',
+            "-quality": '100',
+            "-strip": '',
+            "-density": '100',
+            "-alpha": 'off'
+        }
+    };
+
+const pdfFile = new PDFImage("/tpm/slide.pdf", pdfImageOptions);
+
+pdfFile.convertFile().then((imagePaths) => {
+                            // ["/tpm/slide-0.pdf", "/tpm/slide-1.pdf", ...]
+                        })
+```
+
 ## Express
 
 Following example shows an example of pdf-image in Express, which gives
@@ -74,6 +98,16 @@ URLs for each pages of a PDF like
     });
   });
 ```
+
+### Issues
+
+You maybe face permissions issue, something like this error: 
+    
+    convert-im6. q16: not authorized
+
+In this case you can execute this command on linux: 
+
+     sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xmlout
 
 ## Options
 
